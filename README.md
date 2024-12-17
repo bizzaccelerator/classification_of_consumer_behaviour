@@ -1,4 +1,4 @@
-# classification_of_consumer_behaviour
+# Classification of consumer behaviour for an Original Equipment Manufacturer (OEM) startup company 
 
 *A Python-based predictive application for segment customers into distinct classes according it's phone usage behaviour using survey data, containerized with Docker.*
 
@@ -6,7 +6,7 @@ This fictional project was developed as a Capstone project for the Machine Learn
 
 The current project simulates a real scenario of information gathering to help a marketing team of a startup company who pretends to lauch a novel cellphone to better understand and predict customer needs, enabling more targeted marketing and decision-making. 
 
-![phone_usage](https://github.com/bizzaccelerator/corn-yield-prediction/blob/main/Images/CornField_Lead.jpg)
+![phone_usage](https://github.com/bizzaccelerator/classification_of_consumer_behaviour/blob/main/Images/phone_usage.jpg)
 Photo: ©Julio Lopez – pexels.com
 
 ## Problem statement
