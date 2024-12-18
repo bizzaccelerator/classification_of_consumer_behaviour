@@ -1,4 +1,4 @@
-# Classification of consumer behaviour for an Original Equipment Manufacturer (OEM) startup company 
+# Classification of consumer behaviour for a Cellphone Original Equipment Manufacturer (OEM) startup company 
 
 *A Python-based predictive application for segment customers into distinct classes according it's phone usage behaviour using survey data, containerized with Docker.*
 
@@ -13,7 +13,9 @@ Photo: ©Julio Lopez – pexels.com
 This could be understood in two leves: a business problem and a technical problem. 
 
 ### _Business problem:_
-Certain region in Kenya has experienced rapid population growth over the past decade in an underdeveloped economic environment. The social group living in this region considers _corn_ as the preferred base for most typical dishes; however, the low level of precipitation threatens sufficient production in the coming years. The Mayor's Office seeks to make the best decisions to ensure food security in the county. To acheive that goal, the prediction of corn production at a household level is a must. That’s why the managing team at the political office needs to know the expected levels of corn production at a household level, the key variables affecting it, so they can further improve the resources allocation process.
+The cellphone market is highly competitive, making it essential to understand consumer preferences to maintain a competitive edge. A cellphone OEM must identify behavioral patterns to predict customer actions, such as upgrade cycles, brand loyalty, and feature preferences. For a startup, this information is even more critical.
+
+The marketing team of this cellphone OEM needs insights into customer usage patterns within a targeted segment and estimates of potential benefits. This knowledge enables them to tailor marketing efforts, refine product features, and boost customer satisfaction. Therefore, the marketing team requires a tool that categorizes the analyzed individuals into different classes, enabling appropriate actions to be taken. 
 
 ### _Technical problem:_
 As a Machine Learning engineer, I am tasked with building a model that not only predicts the amount of corn produced in that county in Kenya but also helps decision makers at the mayor's office organize resources for optimized corn production. To achieve this goal, the model construction explores data collected from various plantations, identifying several useful variables such as the gender of the plantation leader, the size of the household, and the amount of fertilizer used in corn production, among others. This model is implemented in a cloud solution that serves the model for future use and insights extraction, enhancing its reliability, readability, and security.
