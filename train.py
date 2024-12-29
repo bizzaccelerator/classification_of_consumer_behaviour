@@ -38,9 +38,6 @@ significant_var = ['app_usage_time_(min/day)', 'battery_drain_(mah/day)', 'numbe
 users_cleaned = users[significant_var]
 users_cleaned.reset_index
 
-# The data is transformed to dictionaries as this example:
-users_dict = users.to_dict(orient='records')
-
 # Preparation dataset
 X = users_cleaned.drop('user_behavior_class', axis=1)
 y = users_cleaned['user_behavior_class']
@@ -97,8 +94,7 @@ y_pred = best_rf_model.predict(X_val)
 model_params = best_rf_model.get_params()
 
 # Defining the model name as:
-# output_file = f"random_forest_model_estimators={model_params['n_estimators']}_max_features={model_params['max_features']}.bin"
-output_file = "test.bin"
+output_file = f"random_forest_model_estimators={model_params['n_estimators']}_max_features={model_params['max_features']}.bin"
 
 # Saving the model for external usage
 with open(output_file, 'wb') as f_out:
