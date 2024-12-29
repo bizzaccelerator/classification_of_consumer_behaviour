@@ -22,11 +22,11 @@ As a Machine Learning engineer, I am tasked with developing a classification mod
 
 ## Solution proposed
 
-The proposed engineering solution is based on an `Optimized Gradient Boosted Tree model`, achieving an average deviation of 41.775 units from the test values and explaining 90.14% of the variability in corn yield production. This model outperformed other algorithms tested.
+The proposed engineering solution is based on an `Optimized Random Forest model` that accurately classifies all subjects in the test dataset, achieving 100% precision and recall. This model outperformed other algorithms tested.
 
-The model was selected after an extensive Exploratory Data Analysis (EDA), which addressed missing values, analyzed univariate distributions, and assessed feature importance. Details of the EDA process are available in the [notebook]().
+The model was selected after an extensive Exploratory Data Analysis (EDA), which addressed missing values, analyzed univariate distributions, and assessed feature importance. Details of the EDA process are available in the [notebook](https://github.com/bizzaccelerator/classification_of_consumer_behaviour/blob/main/notebook.ipynb).
 
-The solution is implemented as a Python-based predictive service designed to estimate corn yields using survey data from farmers. It is deployed as a web application, enabling office teams to process survey data and predict expected corn yields for the current season, so they can take actions to reduce food insecurity in the county.
+The solution is implemented as a Python-based predictive service that estimates a customer's class in advance based on survey data of usage patterns. It is deployed as a web application, enabling the marketing team of the OEM to process survey data and predict expected consumer behaviour, so they can target them with devices that best meet their needs.
 
 ![Solution]()
 Photo: Diagram of the solution engineered.
