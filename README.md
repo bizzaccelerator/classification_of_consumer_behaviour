@@ -28,7 +28,7 @@ The model was selected after an extensive Exploratory Data Analysis (EDA), which
 
 The solution is implemented as a Python-based predictive service that estimates a customer's class in advance based on survey data of usage patterns. It is deployed as a web application, enabling the marketing team of the OEM to process survey data and predict expected consumer behaviour, so they can target them with devices that best meet their needs.
 
-![Solution]()
+![Solution](https://github.com/bizzaccelerator/classification_of_consumer_behaviour/blob/main/Images/Classify.jpg)
 Photo: Diagram of the solution engineered.
 
 ### _Rationale behind the solution:_ 
