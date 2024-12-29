@@ -33,9 +33,9 @@ Photo: Diagram of the solution engineered.
 
 ### _Rationale behind the solution:_ 
 
-During the process different algorithms were tested. The first group analyzed were the Linear, Ridge and Lasso Regression; the second group studied were the Random Forest and it's the optimized version, and finally, the Gradient Boosted Trees and its Optimized version were taken into account too. An Optimized Gradient Boosted Tree model was chosen after evaluating various algorithms for its superior performance in balancing prediction accuracy and interpretability. 
+During the process different algorithms were tested. The first group analyzed was Decision Trees, followed by Random Forests, Gradient Boosted Trees, Support Vector Classifiers, and finally, Convolutional Neural Networks (CNN). The best parameters for all these algorithms were identifyed using GridSearch. An Optimized Random Forest Model model was chosen after evaluating various algorithms for its superior performance in balancing prediction accuracy and interpretability. 
 
-The data used in this project was obtained for free from kagle [here](https://www.kaggle.com/datasets/japondo/corn-farming-data). However, a copy of the referred data is added to this repository for convenience. 
+The data used in this project was obtained for free from kagle [here](https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset). However, a copy of the referred data is added to this repository for convenience. 
 
 The application was coded in python using a distribution of Anaconda. Conda was used to manage isolated virtual environments and install all the packages needed without conflicts. This solution was built using Flask, a lightweight and flexible Python web framework, to efficiently handle HTTP requests and deliver a user-friendly interface for interacting with the predictive model. Flask was chosen for its simplicity, scalability, and suitability for developing APIs that serve the predictive service.
 
