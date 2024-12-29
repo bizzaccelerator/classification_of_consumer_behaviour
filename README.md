@@ -47,4 +47,4 @@ The engineered classification service was deployed using AWS Elastic Beanstalk, 
 
 ## How to run the project.
 
-Follow the this [instructions]() to reproduce the project.
+Follow the this [instructions](https://github.com/bizzaccelerator/classification_of_consumer_behaviour/blob/main/deployment_instructions.md) to reproduce the project.
