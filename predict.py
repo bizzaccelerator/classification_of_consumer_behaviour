@@ -30,7 +30,8 @@ def predict():
         y_pred = model.predict(X)
 
         result = {
-            'The predicted class for this costumer is': int(y_pred[0])
+            'The predicted class for this costumer is': int(y_pred[0]) + 1 
+            # One is added to adjust for the original classes.
         }
     except Exception as e: # Error handling message
         return jsonify({'error': str(e)}), 500
