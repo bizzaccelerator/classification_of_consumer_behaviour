@@ -1,0 +1,19 @@
+{
+    "family": "phone-users-classifier",
+    "containerDefinitions": [
+      {
+        "name": "latest",
+        "image": "314146307662.dkr.ecr.us-east-1.amazonaws.com/customer-classification-behaviour",
+        "memory": 512,
+        "cpu": 256,
+        "essential": true,
+        "portMappings": [
+          {
+            "containerPort": 9696,
+            "hostPort": 80
+          }
+        ]
+      }
+    ]
+  }
+  
