@@ -1,4 +1,4 @@
-## How to run the project.
+# How to reproduce the project.
 
 Follow the steps below to reproduce the project locally or on a remote environment:
 
@@ -14,20 +14,22 @@ Ensure the following are installed on your system:
 - Open a terminal and navigate to the desired folder.
 - Clone the repository:
 
-> git clone https://github.com/bizzaccelerator/corn-yield-prediction.git cd your-repo-name
+> git clone https://github.com/bizzaccelerator/classification_of_consumer_behaviour.git cd your-repo-name
 
 ### _3. Build the Docker Image:_
 
 - Ensure Docker is running.
 - Build the Docker image:
 
-> docker build -t corn-yield-prediction:latest .
+> docker build -t classification-users:latest .
+
+## To test the service locally.
 
 ### _4. Run the Application:_
 
 - Start a container:
 
-> docker run -d -p 9696:9696 --name corn-yield-app corn-yield-prediction:latest
+> docker run -d -p 9696:9696 --name classification-app classification-user:latest
 
 ### _5. Access the application:_
 
@@ -36,32 +38,31 @@ Ensure the following are installed on your system:
 
 ### _6. Testing the application:_
 
-Open and run the file `test.ipynb`to get the corn yield predicted from the application. Please make sure the variable `farmer` is updated as interested.
+Open and run the file `test.ipynb`to get the classification predicted from the application. Please make sure the variable `customer` is updated as interested.
 
 The variable farmer represents the information collected from surveys transmitted through the HTTP protocol, using JSON, as follows:
 
 ```
-farmer = {"education": "Certificate",
+customer = {
+        "user_id": 4,
+        "device_model": "Google Pixel 5",
+        "operating_system": 'Android',
+        "app_usage_time_(min/day)": 239,
+        "screen_on_time_(hours/day)": 4.8,
+        "battery_drain_(mah/day)": 1676,
+        "number_of_apps_installed": 56,
+        "data_usage_(mb/day)": 871,
+        "age": 20,
         "gender": "Male",
-        "age_bracket": "36-45",
-        "household_size": "7",
-        "acreage": "1.5",
-        "fertilizer_amount": 300,
-        "laborers": "3",
-        "main_credit_source": "Credit groups",
-        "farm_records": "Yes",
-        "main_advisory_source": "Radio",
-        "extension_provider": "County Government",
-        "advisory_format": "SMS text",
-        "advisory_language": "Kiswahili"}
+        "screen_on_time_(min/day)": 288.0}
 ```
 
 ### _7. Stopping and Removing the Container:_
 
 - To stop the container:
 
-> docker stop corn-yield-app
+> docker stop classification-app
 
 - To remove the container:
 
-> docker rm corn-yield-app
+> docker rm classification-app
