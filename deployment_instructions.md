@@ -75,22 +75,39 @@ customer = {
 
 - Ensure the AWS CLI is installed and configured on your local machine. If not installed follow this [instructions](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#install-msi) 
 
-- Run aws configure to set up your AWS access keys, region, and default output format. 
+- Run aws configure command to set up your AWS details: 
 
 > aws configure
 
-Provide the following details when prompted:
+> Provide: 
 
+```
 AWS Access Key ID: Your access key.
 AWS Secret Access Key: Your secret key.
 Default region name: E.g., us-east-1 (or any applicable region).
 Default output format: Typically json, text, or table.
+```
 
+### _5.2 Push Your Docker Image to Amazon Elastic Container Registry (ECR):_
 
+- Create an ECR Repository:
 
-Docker Installed:
+> aws ecr create-repository --repository-name your-repo-name
 
-Verify Docker is installed and running locally. Test with docker --version.
-AWS Free Tier:
+- Authenticate Docker with ECR:
 
-Make sure your AWS account is active and within the Free Tier limits for ECS.
+> aws ecr get-login-password --region your-region | docker login --username AWS --password-stdin <account_id>.dkr.ecr.<region>.amazonaws.com
+
+- Tag Your Docker Image:
+
+> docker tag your-image-name:tag <account_id>.dkr.ecr.<region>.amazonaws.com/your-repo-name:tag
+
+- Push Your Docker Image to ECR:
+
+> docker push <account_id>.dkr.ecr.<region>.amazonaws.com/your-repo-name:tag
+
+### _6.2 Define ECS Resources:_
+
+- Create an ECS Cluster:
+
+> 
