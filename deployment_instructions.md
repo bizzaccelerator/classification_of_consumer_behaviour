@@ -178,3 +178,88 @@ Outbound rules are typically open by default. Leave it as All traffic unless spe
 
 - Save the Security Group.
 
+### _8.2 Create or Use an Existing VPC and Subnets:_
+
+ECS services require a VPC and subnets for network communication.
+
+- Create a VPC (if necessary):
+
+```
+Go to the VPC Console.
+Click Create VPC.
+Configure:      
+        Name tag: e.g., ecs-vpc      
+        IPv4 CIDR block: e.g., 10.0.0.0/16
+```
+
+- Create Subnets:
+
+```
+In the VPC console, create subnets for your VPC.
+Use different availability zones for high availability.
+Example CIDR blocks for subnets:
+        10.0.1.0/24 (Subnet in us-east-1a)
+        10.0.2.0/24 (Subnet in us-east-1b)
+```
+### _9.2 Configure an Internet Gateway:_
+
+To allow public access to your application:
+
+- Attach an Internet Gateway to the VPC:
+
+```
+In the VPC Console, create an Internet Gateway.
+Attach it to your VPC.
+```
+
+- Route Table Setup:
+
+```
+Edit the VPC's route table.
+Add a route:
+        Destination: 0.0.0.0/0
+        Target: The Internet Gateway you created.
+```
+
+### _10.2 Launch an ECS-Optimized EC2 Instance:_
+
+- Go to the EC2 Console:
+
+```
+Open the EC2 Dashboard in the AWS Management Console.
+```
+
+- Launch a New Instance:
+
+```
+Click Launch Instances.
+```
+
+- Choose an Amazon Machine Image (AMI):
+
+```
+Select an ECS-Optimized AMI. For Amazon Linux 2
+```
+
+- Choose an Instance Type:
+
+```
+Select an appropriate instance type. For testing or low-traffic environments, t2.micro or t3.micro (Free Tier eligible) is a good choice.
+```
+
+- Configure Instance Details:
+
+```
+- Network: Choose the VPC you created or are using for ECS.
+- Subnet: Select a public subnet associated with the route table and Internet Gateway.
+- Auto-assign Public IP: Ensure this is enabled so the instance gets a public IP.
+- IAM Role: Select or create an IAM role with the policy AmazonEC2ContainerServiceforEC2Role attached to allow ECS agent communication.
+- User Data: Optionally, provide a script to automatically register the instance with your ECS cluster:
+bash
+```
+
+- Configure Security Group:
+
+```
+Attach the security group you created earlier with rules for port 80 and any other required ports.
+```
