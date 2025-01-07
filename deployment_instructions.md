@@ -25,18 +25,18 @@ Ensure the following are installed on your system:
 
 ## To test the service locally.
 
-### _4. Run the Application:_
+### _4.1 Run the Application:_
 
 - Start a container:
 
 > docker run -d -p 9696:9696 --name classification-app classification-user:latest
 
-### _5. Access the application:_
+### _5.1 Access the application:_
 
 - Open your web browser and go to: http://localhost:9696
 - Alternatively, test with curl or Postman.
 
-### _6. Testing the application:_
+### _6.1 Testing the application:_
 
 Open and run the file `test.ipynb`to get the classification predicted from the application. Please make sure the variable `customer` is updated as interested.
 
@@ -57,7 +57,7 @@ customer = {
         "screen_on_time_(min/day)": 288.0}
 ```
 
-### _7. Stopping and Removing the Container:_
+### _7.1 Stopping and Removing the Container:_
 
 - To stop the container:
 
@@ -66,3 +66,7 @@ customer = {
 - To remove the container:
 
 > docker rm classification-app
+
+## To deploy it to the cloud.
+
+### _4.1 Run the Application:_
