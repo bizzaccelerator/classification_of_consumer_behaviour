@@ -164,10 +164,17 @@ VPC: Select your default VPC or the one you’re using.
 - Add Inbound Rules:
 
 ```
+# For docker connection
 Type            HTTP	
 Protocol	TCP	
 Port Range	80	
 Source          0.0.0.0/0	
+
+# For ssh connection
+Type            SSH	
+Protocol	TCP	
+Port Range	22	
+Source          Your IP address	
 ```
 
 - Add rules to allow incoming traffic:
@@ -263,3 +270,138 @@ bash
 ```
 Attach the security group you created earlier with rules for port 80 and any other required ports.
 ```
+
+### _11.2 Connect the EC2 Instance to Your ECS Cluster:_
+
+- Locate Your Key Pair File:
+
+```
+Ensure you have the private key file (your-key.pem) downloaded and accessible.
+Store it in a location such as C:\Users\<YourUsername>\.ssh\your-key.pem.
+```
+
+- Set Permissions for the Key File:
+
+> chmod 400 /path/to/your-key.pem
+
+- SSH Command:
+
+```
+Use the public IP of the EC2 instance (available in the AWS EC2 dashboard under Instances > Instance Details): ssh -i /path/to/your-key.pem ec2-user@<public-ip>
+```
+
+- Check ECS Agent Status:
+
+> sudo systemctl status ecs
+
+- Register the Instance to Your ECS Cluster (if necessary):
+
+> sudo echo "ECS_CLUSTER=your-cluster-name" >> /etc/ecs/ecs.config
+
+> sudo systemctl restart ecs
+
+- Verify the Instance in the ECS Console
+
+```
+Go to the AWS ECS Dashboard:
+        Navigate to Clusters in the AWS ECS Console.
+        Select your cluster.
+```
+
+- Check the "ECS Instances" Tab:
+
+```
+Ensure your EC2 instance is listed and in an active state.
+```
+
+### _12.2 Adjust Cluster configuration:_
+
+- Update Packages ECS Agent
+
+> sudo yum update -y
+
+- Install Docker (if not already installed):
+
+```
+sudo yum install -y docker
+sudo systemctl enable docker
+sudo systemctl start docker
+```
+
+- Download the ECS Agent:
+
+sudo docker pull amazon/amazon-ecs-agent:latest
+
+> sudo docker pull amazon/amazon-ecs-agent:latest
+
+- Run the ECS Agent:
+
+```
+sudo docker pull --platform linux/amd64 amazon/amazon-ecs-agent:latest
+sudo docker run --platform linux/amd64 --name ecs-agent \
+  --detach=true \
+  --restart=on-failure:10 \
+  --volume=/var/run/docker.sock:/var/run/docker.sock \
+  --volume=/var/log/ecs/:/log \
+  --volume=/var/lib/ecs/data:/data \
+  --net=host \
+  --env=ECS_CLUSTER=your-cluster-name \
+  amazon/amazon-ecs-agent:latest
+```
+
+- Edit the ECS Configuration File:
+
+> sudo mkdir -p /etc/ecs
+> echo "ECS_CLUSTER=your-cluster-name" | sudo tee -a /etc/ecs/ecs.config
+
+- Restart the ECS Agent:
+
+> sudo docker restart ecs-agent
+
+### _13.2 Create or Modify an IAM Role for ECS:_
+
+- Navigate to the IAM Console:
+
+- Create a New Role (or Use an Existing One):
+
+```
+In the left navigation pane, click Roles.
+Click Create role to create a new role (or choose an existing role if you have one suitable for ECS).
+```
+
+- Select EC2 as the Trusted Entity:
+
+```
+In the "Select trusted entity" page, choose AWS service as the trusted entity type.
+For the use case, select EC2 to allow EC2 instances to assume the role.
+```
+
+- Attach the AmazonEC2ContainerServiceforEC2Role Policy:
+
+On the "Attach permissions policies" page, type AmazonEC2ContainerServiceforEC2Role in the search box.
+Check the box next to AmazonEC2ContainerServiceforEC2Role to attach the policy.
+
+- Name the Role:
+
+> Give your role a meaningful name, such as ecs-instance-role or ecs-ec2-role.
+
+
+- Click Next: Review.
+
+- Click Create role to create the role.
+
+- Attach the IAM Role to Your EC2 Instance.
+
+```
+Navigate to the EC2 Console, Select Your Instance, Modify the Instance IAM Role, In the IAM role dropdown, select the role you created earlier (e.g., ecs-instance-role), Click Update IAM role to attach the role to your EC2 instance.
+```
+
+### _14.2 Test the Deployment:_
+
+- Find the Public IP Address of you EC2 :
+
+> Check the ECS service details or EC2 instance public IP. In the form `http://<public-ip>`
+
+- Adjust the public IP of your EC2 in the in the host field  of `test.ipynb` file:
+
+> Run the test.ipynb file to get the prediction result's.
