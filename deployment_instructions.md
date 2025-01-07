@@ -110,4 +110,71 @@ Default output format: Typically json, text, or table.
 
 - Create an ECS Cluster:
 
-> 
+> aws ecs create-cluster --cluster-name your-cluster-name
+
+- Create a file `task-definition.json` that contains:
+
+```
+{
+  "family": "your-task-family",
+  "containerDefinitions": [
+    {
+      "name": "your-container-name",
+      "image": "<account_id>.dkr.ecr.<region>.amazonaws.com/your-repo-name:tag",
+      "memory": 512,
+      "cpu": 256,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80
+        }
+      ]
+    }
+  ]
+}
+```
+
+- Register the Task Definition file as:
+
+> aws ecs register-task-definition --cli-input-json file://task-definition.json
+
+### _7.2 Create a Security Group:_
+
+A security group acts as a virtual firewall to control inbound and outbound traffic to your ECS resources.
+
+- Navigate to the EC2 Console:
+
+```
+Go to the AWS Management Console.
+Open the EC2 dashboard.
+```
+
+- Create a Security Group:
+
+```
+Click on Security Groups under the "Network & Security" section.
+Click Create Security Group.
+Provide: 
+Name: e.g., ecs-security-group
+Description: Allow traffic for ECS service
+VPC: Select your default VPC or the one you’re using.
+```
+
+- Add Inbound Rules:
+
+```
+Type            HTTP	
+Protocol	TCP	
+Port Range	80	
+Source          0.0.0.0/0	
+```
+
+- Add rules to allow incoming traffic:
+
+```
+Outbound rules are typically open by default. Leave it as All traffic unless specific restrictions are needed.
+```
+
+- Save the Security Group.
+
